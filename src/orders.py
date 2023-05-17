@@ -11,9 +11,10 @@ from datetime import (datetime,
 # GLOBALS #
 ###########
 
-ORDER_TYPES = ['buy',
-               'sell'
-              ]
+ORDER_TYPES = [
+    'buy',
+    'sell'
+]
 
 ENGINES = []
 
@@ -26,8 +27,24 @@ class Order:
     def __init__(self,
                  order_type:str,
                  symbol:str,
-                 volume:float,
+                 volume:float
                 ):
+        """
+        Class to track orders
+
+        Parameters
+        ----------
+        order_type : str
+            buy/sell shares
+        symbol : str
+            stock ticker
+        volume : float
+            number to buy/sell
+        """
+        self.order_type = order_type
+        self.symbol = symbol
+        self.volume = volume
+
         self._validate()
         self._make_id()
 
@@ -37,17 +54,29 @@ class Order:
 
     def _validate(self):
         if not (self.order_type in ORDER_TYPES):
-            msg = f"Expected ({'|'.join(ORDER_TYPES)}), got {self.order_type}")
+            msg = f"Expected ({'|'.join(ORDER_TYPES)}), got {self.order_type}"
             raise ValueError(msg)
         if not self.symbol:
             msg = f"Need to provide a symbol"
             raise ValueError(msg)
         if self.volume <= 0:
-            msg f"Order volume must be positive, got {self.volume}"
+            msg = f"Order volume must be positive, got {self.volume}"
             raise ValueError(msg)
 
     def execute(self,
                 engine:str=None
                ):
-        if engine:
+        if engine not in ENGINES:
             raise NotImplementedError()
+        else:
+            A
+            raise NotImplementedError()
+
+    def __str__(self):
+        return self.uid
+
+    def __repr__(self):
+        rep = (f"Order(order_type={self.order_type}, "
+               f"symbol={self.symbol}, volume={self.volume})"
+              )
+        return rep

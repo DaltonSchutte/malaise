@@ -1,0 +1,10 @@
+---
+CORE_ARGS:
+  CLOUD_CONFIG_DIR: "/Users/daltonschutte/Documents/configs/malaise/aws-config.yaml"
+  ENGINE: "alpha_vantage"
+  ENGINE_API_KEY: "/Users/daltonschutte/Documents/api-keys/alpha-vantage-api.yaml"
+  SYMBOL_LIST: "malaise-data/sp500/sp500_index.csv"
+DATA_ARGS:
+  FUNCTION: "TIME_SERIES_DAILY_ADJUSTED"
+  DATATYPE: "json"
+  OUTPUTSIZE: "compact"

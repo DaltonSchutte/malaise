@@ -4,14 +4,14 @@ Tools for parsing configuration yaml files
 TODO:
     -logging
 """
-import sys.exc_info
+import sys
 import yaml
 
 #############
 # FUNCTIONS #
 #############
 
-def parse_config(config_path: str):
+def parse_config(config_path: str) -> dict:
     """
     Read arguments from configuration file
 
@@ -19,6 +19,11 @@ def parse_config(config_path: str):
     ----------
     config_path : str
         path to configuration file
+
+    Returns
+    -------
+    dict
+        dictionary containing configuration parameters
 
     Raises
     ------
@@ -34,7 +39,6 @@ def parse_config(config_path: str):
                  ) as config_file:
             config = yaml.safe_load(config_file)
         config_file.close()
-        return config
     except FileNotFoundError:
         msg = f"{config_path} not found"
         raise FileNotFoundError(msg)
@@ -42,5 +46,6 @@ def parse_config(config_path: str):
         msg = f"Error reading {config_path}"
         raise yaml.reader.ReaderError()
     except Exception as error:
-        print(f"Unexpected {err=}, {type(err)=}")
+        print(f"Unexpected {error=}, {type(error)=}")
         raise
+    return config
